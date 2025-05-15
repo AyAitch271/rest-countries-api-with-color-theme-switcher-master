@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "homepage": "https://github.com/AyAitch271/rest-countries-api-with-color-theme-switcher-master",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
