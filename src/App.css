@@ -1,9 +1,9 @@
 #root{
-  margin: 0 auto;
+  width: 100vw
 }
 
 .container {
-  width: 100vw;
+  width: inherit;
   max-width: 80rem;
   margin: 0 auto;
   padding: 0 2rem;

@@ -9,6 +9,11 @@ import { fetchData } from "../helpers/fetchData"
 import { CountryDetails } from "../components/CountryDetails"
 import { BorderCountries } from "../components/BorderCountries"
 
+import { DisplayLoading } from "../components/reusable/DisplayLoading"
+import { DisplayError } from "../components/reusable/DisplayError"
+
+import { ArrowBackIcon } from "../components/icons/ArrowBackIcon"
+
 export const CountryPage = () => {
   const { countryCode } = useParams()
 
@@ -27,23 +32,30 @@ export const CountryPage = () => {
   const URL = `https://restcountries.com/v3.1/alpha/${countryCode}?fields=${FIELDS}`
 
   const navigate = useNavigate()
-  
+
   const { data: countryData, isLoading, isError } = useQuery({
     queryKey: ['country', countryCode],
-    queryFn: () => fetchData(URL)
+    queryFn: () => fetchData(URL),
   })
 
-  if (isLoading) return <div className="loading">Loading...</div>
+  if (isLoading) return <DisplayLoading />
 
-  if (isError) return <div className="error">Failed To Fetch Data</div>
+  if (isError) return <DisplayError />
+
 
   const { flags, name, population, region, subregion, capital, tld, currencies, languages, borders } = countryData
 
   return (
     <section className="country py-12" >
-      <button className="custom-shadow bg-element px-[8px] py-1 my-10 rounded-sm" onClick={() => navigate(-1)}>Back</button>
+      <button className="relative h-full fill-text hover:fill-element hover:bg-text hover:text-element text-xl custom-shadow bg-element pl-10 py-1.5 px-3 my-10 rounded-sm"
+        onClick={() => navigate(-1)}>
+        <span className="absolute top-[50%] translate-y-[-50%] size-7 fill-inherit left-1">
+          <ArrowBackIcon />
+        </span>
+        <span>Back</span>
+      </button>
       <div className="country-inner grid lg:grid-cols-2 items-center">
-        <img src={flags.svg || flags.png} alt={flags.alt} className="w-lg md:w-full md:h-auto lg:w-120 sm:w-full"/>
+        <img src={flags.png} srcSet={flags.svg} alt={flags.alt} className="w-lg md:w-full md:h-auto lg:w-120 sm:w-full" />
         <div className="align-top space-y-10 ">
           <h4 className=" text-2xl font-extrabold my-6">{name.common}</h4>
           <div className="grid gap-8 lg:grid-cols-2">

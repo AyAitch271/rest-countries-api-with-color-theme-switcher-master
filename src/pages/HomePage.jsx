@@ -3,8 +3,16 @@ import { useQuery } from "@tanstack/react-query"
 import { Filters } from "../components/Filters"
 import { CardsList } from "../components/CardsList"
 import { fetchData } from "../helpers/fetchData"
+import { useSearchParams } from "react-router-dom"
+import { DisplayLoading } from "../components/reusable/DisplayLoading"
+import { DisplayError } from "../components/reusable/DisplayError"
+
+
 
 export const HomePage = () => {
+    const [searchParams] = useSearchParams()
+    const selectedRegion = searchParams.get('region') || 'All'
+
     const FIELDS = [
         'name',
         'flags',
@@ -12,15 +20,17 @@ export const HomePage = () => {
         'population',
         'capital',
         'cca3']
-    const URL = `https://restcountries.com/v3.1/all?fields=${FIELDS}`
+    const URL = selectedRegion == 'All' 
+    ? `https://restcountries.com/v3.1/all?fields=${FIELDS}` : `https://restcountries.com/v3.1/region/${selectedRegion}?fields=${FIELDS}`
 
     const { data: countries, isError, isLoading } = useQuery({
-        queryKey: ['countries'],
+        queryKey: ['countries', selectedRegion],
         queryFn: () => fetchData(URL),
-    })
-    if (isLoading) return <div className="loading">loading...</div>
+    }) 
+    if (isLoading) return <DisplayLoading />
 
-    if (isError) return <div className="error">oops...something failed to fetch data</div>
+    if (isError) return <DisplayError />
+
 
     return (
         <>

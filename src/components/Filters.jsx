@@ -3,7 +3,7 @@ import { DropdownMenu } from "./DropdownMenu"
 
 export const Filters = () => {
     return (
-        <div className="filters flex gap-3 flex-wrap justify-between h-13 mt-20 mb-15">
+        <div className="flex gap-3 flex-wrap justify-between h-15 my-6 md:mt-10 md:mb-0">
             <SearchBox/>
             <DropdownMenu/>
         </div>
