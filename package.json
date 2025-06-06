@@ -6,7 +6,7 @@
   "scripts": {
     "homepage": "https://ayaitch271.github.io/rest-countries-api-with-color-theme-switcher-master/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
