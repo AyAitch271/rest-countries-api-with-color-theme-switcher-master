@@ -8,4 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  base: '/rest-countries-api-with-color-theme-switcher-master'
 })
