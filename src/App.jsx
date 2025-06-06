@@ -10,7 +10,7 @@ import { HomePage } from './pages/HomePage'
 import { CountryPage } from './pages/CountryPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 
-
+const BASE_URL = '/rest-countries-api-with-color-theme-switcher-master/'
 
 export const App = () => {
     const queryClient = new QueryClient()
@@ -27,13 +27,17 @@ export const App = () => {
                     errorElement: <NotFoundPage/>
                 },
                 {
-                    path: ':countryCode',
+                    path: `/:countryCode`,
                     element: <CountryPage />,
                     errorElement: <NotFoundPage/>
                 }
             ]
+
         },
-    ])
+
+    ],
+    {basename: BASE_URL}
+)
 
     return (
         <QueryClientProvider client={queryClient}>
