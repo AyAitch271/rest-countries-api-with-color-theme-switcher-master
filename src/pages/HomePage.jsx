@@ -19,7 +19,7 @@ export const HomePage = () => {
         'capital',
         'cca3']
     const URL = selectedRegion == 'All' 
-    ? `https://restcountries.com/v3.1/all?fields=${FIELDS.join(',')}` : `https://restcountries.com/v3.1/region/${selectedRegion}?fields=${FIELDS.join(',')}`
+    ? `/https://restcountries.com/v3.1/all?fields=${FIELDS.join(',')}` : `/https://restcountries.com/v3.1/region/Asia?fields=${FIELDS.join(',')}`
 
     const { data: countries, isError, isLoading } = useQuery({
         queryKey: ['countries', selectedRegion],
