@@ -29,7 +29,7 @@ export const CountryPage = () => {
     'languages',
     'borders']
 
-  const URL = `https://restcountries.com/v3.1/alpha/${countryCode}?fields=${FIELDS}`
+  const URL = `https://restcountries.com/v3.1/alpha/${countryCode}?fields=${FIELDS.join(',')}`
 
   const navigate = useNavigate()
 

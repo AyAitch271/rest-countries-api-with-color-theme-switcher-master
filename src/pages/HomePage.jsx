@@ -13,15 +13,13 @@ export const HomePage = () => {
     const [searchParams] = useSearchParams()
     const selectedRegion = searchParams.get('region') || 'All'
 
-    const FIELDS = [
-        'name',
-        'flags',
+    const FIELDS = ['name','flags',
         'region',
         'population',
         'capital',
         'cca3']
     const URL = selectedRegion == 'All' 
-    ? `https://restcountries.com/v3.1/all?fields=${FIELDS}` : `https://restcountries.com/v3.1/region/${selectedRegion}?fields=${FIELDS}`
+    ? `https://restcountries.com/v3.1/all?fields=${FIELDS.join(',')}` : `https://restcountries.com/v3.1/region/${selectedRegion}?fields=${FIELDS.join(',')}`
 
     const { data: countries, isError, isLoading } = useQuery({
         queryKey: ['countries', selectedRegion],
